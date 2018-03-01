@@ -23,7 +23,7 @@ def get_score(car, ride):
     """
     score = ride.total_length()
     starting_ride_at = car.check_availability(ride)
-    score = 0.7 * score + 0.3 * math.exp(-starting_ride_at)
+    score = 0.7 * score + 0.3 * math.exp(-(starting_ride_at-car.a_time))
     if starting_ride_at == ride.start_time():
         score += bonus
     return score
