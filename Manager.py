@@ -23,9 +23,10 @@ def get_score(car, ride):
     """
     score = ride.total_length()
     starting_ride_at = car.check_availability(ride)
+    score = 0.7 * score + 0.3 * math.exp(-starting_ride_at)
     if starting_ride_at == ride.start_time():
         score += bonus
-    return 0.7 * score + 0.3 * math.exp(-starting_ride_at)
+    return score
 
 
 input_file = sys.argv[1]
