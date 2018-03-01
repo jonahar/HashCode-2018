@@ -22,8 +22,8 @@ def build_data(input_file):
         s = tokenizer.next_int()
         f = tokenizer.next_int()
         tokenizer.next_line()
-        rides.append(Ride(a, b, x, y, s, f))
+        rides.append(Ride(a, b, x, y, s, f, i))
     cars = []
     for i in range(num_cars):
         cars.append(Car())
-    return rides, cars, bonus
+    return rides, cars, bonus, num_rides, num_cars
