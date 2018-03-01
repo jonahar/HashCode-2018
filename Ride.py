@@ -17,7 +17,8 @@ class Ride:
         return self.s
 
     def end_time(self):
-        return self.e
+        return self.f
 
     def total_length(self):
         return abs(self.y-self.b)+abs(self.x-self.a)
+    # done?
