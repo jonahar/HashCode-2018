@@ -7,6 +7,7 @@ class Ride:
         self.s = s
         self.f = f
         self.index = index
+        self.assigned = False
 
     def start_point(self):
         return (self.a, self.b)
@@ -25,6 +26,12 @@ class Ride:
 
     def get_index(self):
         return self.index
+
+    def is_assigned(self):
+        return self.assigned
+
+    def assign(self):
+        self.assigned = True
 
     def __repr__(self):
         return 'start_point=({0}, {1}); end_point=({2},{3}); start_time={4}; end_time={5}' \
