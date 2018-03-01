@@ -10,7 +10,7 @@ def get_best_car(k_cars, ride):
     best_car = None
     for car in k_cars:
         cur_time = car.check_availability(ride)
-        if (best_time == -100 or best_time > cur_time):
+        if ((best_time == -100 or best_time > cur_time) and cur_time!= -1):
             best_time = cur_time
             best_car = car
     return best_car
@@ -23,7 +23,7 @@ def get_score(car, ride):
     """
     score = ride.total_length()
     starting_ride_at = car.check_availability(ride)
-    score = 0.7 * score + 0.3 * math.exp(-(starting_ride_at-car.a_time))
+    score = score -(starting_ride_at-car.a_time)
     if starting_ride_at == ride.start_time():
         score += bonus
     return score
@@ -45,6 +45,8 @@ for i in range(0, num_rides):
         if rides[j].is_assigned():
             continue
         best_car = get_best_car(k_cars, rides[j])
+        if best_car is None:
+            continue
         score = get_score(best_car, rides[j])
         if score > best_assign['score']:
             # found a better ride to assign
