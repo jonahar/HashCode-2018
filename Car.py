@@ -2,6 +2,7 @@ class Car:
     def __init__(self):
         self.location = (0, 0)
         self.a_time = 0
+        self.rides_history = []
 
     def check_availability(self, ride):
         """
@@ -22,6 +23,7 @@ class Car:
         else:
             self.a_time = arrival + ride.total_length()
             self.location = ride.end_point()
+            self.rides_history.append(ride.get_index())
             return True
 
     def distance(self, location):
@@ -30,3 +32,13 @@ class Car:
         """
         x, y = location
         return abs(self.location[0] - x) + abs(self.location[1] - y)
+
+    def write_to_file(self, file):
+        file.write(str(len(self.rides_history)))
+        for x in self.rides_history:
+            file.write(' ')
+            file.write(str(x))
+
+        file.write("/n")
+
+
