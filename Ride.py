@@ -20,4 +20,4 @@ class Ride:
         return self.e
 
     def total_length(self):
-        return
+        return abs(self.y-self.b)+abs(self.x-self.a)
