@@ -39,6 +39,6 @@ class Car:
             file.write(' ')
             file.write(str(x))
 
-        file.write("/n")
+        file.write("\n")
 
 

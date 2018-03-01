@@ -12,7 +12,7 @@ def get_best_car(k_cars, ride):
         if (best_time == -100 or best_time > cur_time):
             best_time = cur_time
             best_car = car
-    return (best_car, best_time)
+    return best_car
 
 
 def get_score(car, ride):
@@ -26,12 +26,13 @@ def get_score(car, ride):
     return score
 
 
-input_file = sys.argv[1]
-rides, cars, bonus, num_rides, num_cars = Parser.build_data(input_file)
+input_filename = sys.argv[1]
+output_filename = sys.argv[2]
+rides, cars, bonus, num_rides, num_cars = Parser.build_data(input_filename)
 rides.sort(key=lambda r: r.start_time())
 
-m = 5
-k = 20
+m = 2
+k = 2
 
 for i in range(0, num_rides - m):
     # randomly select k cars
@@ -48,3 +49,9 @@ for i in range(0, num_rides - m):
     if best_assign['score'] > 0:
         best_car.add_ride(best_assign['ride'])
         best_assign['ride'].assign()
+
+# write results to output file
+out_file = open(output_filename, 'w')
+for car in cars:
+    car.write_to_file(out_file)
+out_file.close()
