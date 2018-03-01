@@ -1,10 +1,7 @@
-
 class Car:
-
     def __init__(self):
-        self.location = (0,0)
+        self.location = (0, 0)
         self.a_time = 0
-
 
     def check_availability(self, ride):
         """
@@ -13,16 +10,13 @@ class Car:
         dist = self.distance(ride.start_point())
         length = ride.total_length()
         if ((dist + length + self.a_time) <= ride.end_time()):
-            return dist+self.a_time
+            return dist + self.a_time
         else:
             return -1
 
-
-
-
     def add_ride(self, ride):
-            #checking car availability
-            arrival = self.check_availability(ride)
+        # checking car availability
+        arrival = self.check_availability(ride)
         if (arrival < 0):
             return False
         else:
@@ -30,11 +24,9 @@ class Car:
             self.location = ride.end_point()
             return True
 
-
     def distance(self, location):
         """
         calculating location from the given point
         """
-        x,y = location
-        return abs(self.location[0] - x)  + abs(self.location[1]-y)
-
+        x, y = location
+        return abs(self.location[0] - x) + abs(self.location[1] - y)
