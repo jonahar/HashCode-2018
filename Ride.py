@@ -20,5 +20,10 @@ class Ride:
         return self.f
 
     def total_length(self):
-        return abs(self.y-self.b)+abs(self.x-self.a)
+        return abs(self.y - self.b) + abs(self.x - self.a)
+
     # done?
+
+    def __repr__(self):
+        return 'start_point=({0}, {1}); end_point=({2},{3}); start_time={4}; end_time={5}' \
+            .format(self.a, self.b, self.x, self.y, self.s, self.f)

@@ -1,6 +1,6 @@
 from Tokenizer import Tokenizer
 from Ride import Ride
-import Car
+from Car import Car
 
 
 def build_data(input_file):
@@ -21,10 +21,9 @@ def build_data(input_file):
         y = tokenizer.next_int()
         s = tokenizer.next_int()
         f = tokenizer.next_int()
+        tokenizer.next_line()
         rides.append(Ride(a, b, x, y, s, f))
-    Car.T = total_steps
     cars = []
     for i in range(num_cars):
-        cars.append(Car.Car())
+        cars.append(Car())
     return rides, cars, bonus
-
