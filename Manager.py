@@ -1,7 +1,6 @@
 import sys
 import Parser
 import random
-import math
 
 
 def get_best_car(k_cars, ride):
@@ -10,7 +9,7 @@ def get_best_car(k_cars, ride):
     best_car = None
     for car in k_cars:
         cur_time = car.check_availability(ride)
-        if ((best_time == -100 or best_time > cur_time) and cur_time!= -1):
+        if (best_time == -100 or best_time > cur_time) and cur_time != -1:
             best_time = cur_time
             best_car = car
     return best_car
@@ -23,7 +22,7 @@ def get_score(car, ride):
     """
     score = ride.total_length()
     starting_ride_at = car.check_availability(ride)
-    score = score -(starting_ride_at-car.a_time)
+    score = score - (starting_ride_at - car.a_time)
     if starting_ride_at == ride.start_time():
         score += bonus
     return score
@@ -34,8 +33,8 @@ output_filename = sys.argv[2]
 rides, cars, bonus, num_rides, num_cars = Parser.build_data(input_file)
 rides.sort(key=lambda r: r.start_time())
 
-m = 5
-k = 20
+m = 5  # window size of rides: number of rides from which we choose the next ride to assign
+k = 20  # number of cars to check for each ride
 
 for i in range(0, num_rides):
     # randomly select k cars
